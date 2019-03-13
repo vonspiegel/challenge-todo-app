@@ -11,7 +11,8 @@ class Home extends Component {
     editIndex: '',
   };
 
-  handleCreateTodo = () => {
+  handleCreateTodo = (props) => {
+    console.log('create', props)
     todo.createTodo({ user: this.props.user})
       .then((newTodo) => {
         let newTodoList = [...this.state.todoList,newTodo];
@@ -38,16 +39,8 @@ class Home extends Component {
     });
   };
 
-  // fetchUserInfo = () => {
-  //   auth.getUser()
-  //     .then((user) => {
-  //       this.props.setUser(user)
-  //     });
-  // };
-
   componentDidMount(){
     this.fetchTodos();
-    // this.fetchUserInfo();
   };
 
   handleEditTodo = (index) => {
@@ -71,7 +64,7 @@ class Home extends Component {
   listTodos = () => {
     const { todoList, editIndex } = this.state;
     return (
-      <div className="cv-Preview-container">
+      <div>
       <ul>
         {
           todoList.map((todo,index) => {
@@ -91,7 +84,7 @@ class Home extends Component {
                 key={index}
                 todo={todo}
                 index={index}
-                updateCv={this.handleUpdateCV}
+                updateCv={this.handleUpdateTodo}
               />
             }
           })
@@ -103,9 +96,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home-container">
-      Hey
-        <button className="add-btn" onClick={this.handleCreateTodo}>Add Todo</button>
+      <div>
+      
+        <button onClick={this.handleCreateTodo}>Add Todo</button>
         { this.listTodos() }
       </div>
     );
