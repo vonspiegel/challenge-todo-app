@@ -68,7 +68,7 @@ class Home extends Component {
     });
   };
 
-  listCvs = () => {
+  listTodos = () => {
     const { todoList, editIndex } = this.state;
     return (
       <div className="cv-Preview-container">
@@ -89,7 +89,7 @@ class Home extends Component {
             else {
               return <EditTodoList
                 key={index}
-                cv={cv}
+                todo={todo}
                 index={index}
                 updateCv={this.handleUpdateCV}
               />
@@ -105,11 +105,11 @@ class Home extends Component {
     return (
       <div className="home-container">
       Hey
-        {/* <button className="add-btn" onClick={this.handleCreateCV}><i className="fas fa-plus"></i></button>
-        { this.listCvs() } */}
+        <button className="add-btn" onClick={this.handleCreateTodo}>Add Todo</button>
+        { this.listTodos() }
       </div>
     );
   };
 };
 
-export default (Home);
+export default Home;
