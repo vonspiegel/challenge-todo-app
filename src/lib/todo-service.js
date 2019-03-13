@@ -50,6 +50,6 @@ class Todo {
   };
 };
 
-const cv = new Cv();
+const todo = new Todo();
 
-export default cv;
+export default todo;
