@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import TodoList from '../components/TodoList';
 import './Home.css';
-import todo from '../lib/todo-service';
-import EditTodoList from '../components/EditTodoList';
 import Item from '../components/Item';
 import AddTodo from '../components/AddTodo';
 
 
 class Home extends Component {
   state = {
-    todoList: ['primero', 'segundo'],
+    todoList: [],
   };
   
   listTodos = () => {
@@ -19,6 +16,7 @@ class Home extends Component {
         key={`${item} - ${index}`}
         title={item}
         index={index}
+        toDelete={this.handleDelete}
       />
     })
   }
@@ -28,6 +26,14 @@ class Home extends Component {
     const newTodo = [...todoList, item];
     this.setState({
       todoList: newTodo,
+    })
+  }
+
+  handleDelete = (item) => {
+    const { todoList } = this.state;
+    todoList.splice(item, 1);
+    this.setState({
+      todoList: [...todoList],
     })
   }
 

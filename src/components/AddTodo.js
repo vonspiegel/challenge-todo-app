@@ -11,7 +11,7 @@ class AddTodo extends Component {
     })
   }
 
-  handleCLick = (c) => {
+  handleCLick = () => {
     const { addToList } = this.props;
     const { todoInput } = this.state;
     addToList(todoInput);
@@ -21,6 +21,7 @@ class AddTodo extends Component {
   }
   
   render() {
+    console.log('objectAdd', this.props)
     return (
       <div>
         <input type="text" onChange={this.handleInput}></input>
