@@ -3,13 +3,13 @@ import axios from 'axios';
 class Todo {
   constructor() {
     this.todo = axios.create({
-      baseURL: process.env.REACT_APP_BASE_URL,
+      baseURL: 'http://localhost:4000/api/v1',
       withCredentials: true
     });
   };
 
-  getTodos(user) {
-    return this.todo.get('/todos',{user})
+  getAllTodos() {
+    return this.todo.get('/todos')
     .then(({ data }) => {
         return data
     });
@@ -23,31 +23,30 @@ class Todo {
   };
 
   createTodo(todo) {
-    const { name, user } = todo;
-    return this.todo.post('/todos', {name, user})
+    const { title, body } = todo;
+    return this.todo.post('/todos', { title, body })
     .then(({ data }) => {
+      console.log('created data',data)
       return data;
     });
   };
 
   deleteTodo(id) {
+    console.log(id)
     return this.todo.delete(`/todos/${id}`)
     .then(({ data }) => {
       return data;
     });
   };
 
-  // updateCv(cv) {
-  //   return this.cv.put(`/todos/${todo._id}`, todo)
-  //   .then(({ data }) => {
-  //     return data;
-  //   });
-  // };
-
-  me(body) {
-    return this.todo.get('/todos')
-    .then(response => response.data)
+  updateTodo(todo) {
+    console.log('update', todo)
+    return this.todo.put(`/todos/${todo._id}`, todo)
+    .then(({ data }) => {
+      return data;
+    });
   };
+
 };
 
 const todo = new Todo();

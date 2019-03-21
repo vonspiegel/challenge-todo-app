@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 
 class Item extends Component {
   render() {
-    console.log('objectItem', this.props)
-    const { title, index, toDelete } = this.props
+    // console.log('objectItem', this.props)
+    const { title, body, index, toDelete, toEdit } = this.props
     return (
       <div>
         <h4>{title}</h4>
-        <textarea placeholder="Description"></textarea>
+        <p>{body}</p>
         <button onClick={() => {
           toDelete(index);
-        }}>Del</button>
+        }}>Delete</button>
+        <button onClick={() => {
+          toEdit(index);
+        }}>Edit</button>
       </div>
     )
   }
